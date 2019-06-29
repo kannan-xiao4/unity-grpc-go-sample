@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package sample.chat;
+option go_package = "sample_caht";
+
+
+// Interface exported by the server.
+service RouteGuide {
+    rpc Hello(Name) returns (Replay) {}
+  
+    rpc ListGreet(Empty) returns (stream Replay) {}
+  
+    rpc RecordGreet(stream Name) returns (Summary) {}
+  
+    rpc Chatting(stream Name) returns (stream Replay) {}
+}
+
+message Empty{
+}
+
+message Name{
+    string name = 1;
+}
+
+message Replay{
+    string message = 1;
+}
+
+message Summary{
+    repeated Replay replaies = 1;
+}
